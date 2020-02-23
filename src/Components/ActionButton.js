@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { addList, addCard } from '../Actions';
+
 
 class ActionButton extends Component {
     state = {
@@ -23,6 +26,28 @@ class ActionButton extends Component {
             text: e.target.value,
         })
     }
+
+    handleAddList = () => {
+        const { dispatch } = this.props;
+        const { text } = this.state;
+
+        if (text) {
+            dispatch(addList(text));
+        }
+
+        return;
+    }
+
+    handleAddcard = () => {
+        const { dispatch, listID } = this.props;
+        const { text } = this.state;
+
+        if(text) {
+            dispatch(addCard(listID, text));
+        }
+        return;
+    }
+
     renderAddButton = () => {
         const { list } = this.props;
 
@@ -60,7 +85,7 @@ class ActionButton extends Component {
                     border: "none"
                 }}
             />
-            <button className="btn btn-sm btn-light" type="button">{buttonTitle}</button>
+            <button className="btn btn-sm btn-light" type="button" onMouseDown={list ? this.handleAddList: this.handleAddcard}>{buttonTitle}</button>
         </div>
     };
 
@@ -69,4 +94,4 @@ class ActionButton extends Component {
     }
 }
 
-export default ActionButton;
+export default connect()(ActionButton);
