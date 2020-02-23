@@ -1,26 +1,37 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
+import React, { useState, Component } from 'react';
 import './App.css';
-import uuid from 'uuid/v4';
 import 'react-bootstrap';
-import Board from './Components/Board';
+import { connect } from 'react-redux';
+import List from './Components/List';
+import ActionButton from './Components/ActionButton';
+//const Boards = localStorage.getItem('board')? JSON.parse(localStorage.getItem('board')):[];
 
-const Boards = localStorage.getItem('board')? JSON.parse(localStorage.getItem('board')):[];
-
-
-function App() {
-  const [boards, setBoards] = useState(Boards);
-
+class App extends Component {
+  render() {//const [boards, setBoards] = useState(Boards);
+  const { lists } = this.props;
   // State Functionality
 
   
   return (
-    <div className="App">
-      <header className="App-header">
-        <Board board={boards} />
-      </header>
+    <>
+    
+    <div>
+      <header className="text-center"><h2>Project Druid</h2></header>
     </div>
+    <div className="container-fluid">
+      <main className="row p-2 bg-light">
+        {lists.map(list => (
+          <List title={list.title} cards={list.cards} />
+        ))}
+        <div className="col-sm col-md-4"><button type="button" className="btn btn-sm btn-dark"><ActionButton list /></button></div>
+      </main>
+    </div>
+    </>
   );
 }
+}
+const mapStateToProps = state => ({
+  lists: state.lists
+})
 
-export default App;
+export default connect(mapStateToProps) (App);

@@ -1,5 +1,5 @@
 import React from 'react';
-import List from './List';
+import Item from './Item';
 
 const Board = ({board}) => {
     return (
@@ -7,8 +7,8 @@ const Board = ({board}) => {
             <div className="album py-5">
                 <div className="container">
                     <div className="row">
-                    {board.map((boardName) => {
-                        return <List key={boardName.id} />
+                    {board.map((lists) => {
+                        return <Item key={lists.id} List={lists}/>
                         
                     })}
                     <span>Hello from Board</span>
