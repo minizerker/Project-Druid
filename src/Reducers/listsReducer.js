@@ -31,6 +31,7 @@ const initialState = [
             }
         ]
     }
+    
 ]
 
 const listsReducer = (state = initialState, action) => {

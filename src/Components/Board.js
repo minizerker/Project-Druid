@@ -2,6 +2,7 @@ import React from 'react';
 import Item from './Item';
 
 const Board = ({board}) => {
+
     return (
         <>
             <div className="album py-5">

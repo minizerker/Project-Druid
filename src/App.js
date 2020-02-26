@@ -23,7 +23,7 @@ class App extends Component {
         {lists.map(list => (
           <List listID={list.id} key={list.id} title={list.title} cards={list.cards} />
         ))}
-        <div className="col-sm col-md-4"><button type="button" className="btn btn-sm btn-dark"><ActionButton list /></button></div>
+        <div className="col-sm col-md-4 ml-auto"><button type="button" className="btn btn-sm btn-dark"><ActionButton list /></button></div>
       </main>
     </div>
     </>
